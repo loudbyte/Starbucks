@@ -1,6 +1,7 @@
-package com.epam.starbucks.products.coffee.beans;
+package com.epam.starbucks.product.coffeedrink;
 
-public abstract class CoffeeBeans {
+public abstract class Coffee {
+
     public abstract String getName();
     public abstract int getCost();
 
@@ -8,5 +9,4 @@ public abstract class CoffeeBeans {
     public String toString() {
         return getName() + ":\t" + getCost() + "$";
     }
-
 }

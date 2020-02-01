@@ -1,6 +1,6 @@
 package com.epam.starbucks.process;
 
-import com.epam.starbucks.products.coffee.Coffee;
+import com.epam.starbucks.process.validator.NumberValidator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 public class Pay {
+
     private int currentPrice = 0;
 
     public int getCurrentPrice() {
@@ -29,13 +30,13 @@ public class Pay {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(IsNumber.isNumeric(reader)) {
+
+        if(NumberValidator.isNumeric(reader)) {
             userPayment = Integer.parseInt(reader);
         } else {
             System.out.println("Вы ввели не число.");
             System.exit(-1);
         }
-
 
         if(userPayment == currentPrice) {
             createOrder();

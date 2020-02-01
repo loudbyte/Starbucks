@@ -1,10 +1,11 @@
 package com.epam.starbucks.main;
 
 import com.epam.starbucks.process.*;
-import com.epam.starbucks.products.coffee.Coffee;
-import com.epam.starbucks.products.coffee.types.*;
-import com.epam.starbucks.products.coffee.beans.CoffeeBeans;
-import com.epam.starbucks.products.coffee.beans.types.*;
+import com.epam.starbucks.product.ProductCollection;
+import com.epam.starbucks.product.coffeebean.CoffeeBean;
+import com.epam.starbucks.product.coffeebean.type.*;
+import com.epam.starbucks.product.coffeedrink.Coffee;
+import com.epam.starbucks.product.coffeedrink.type.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -15,24 +16,17 @@ public class Order {
         Pay pay = new Pay();
         int currentPrice = 0;
 
-        Map<Integer, Coffee> coffeeCollection = new HashMap<>();
-        coffeeCollection.put(1, new Americano());
-        coffeeCollection.put(2, new Cappuccino());
-        coffeeCollection.put(3, new Latte());
-        coffeeCollection.put(4, new Macchiatos());
-        coffeeCollection.put(5, new Mochas());
-
-        Map<Integer, CoffeeBeans> coffeeBeansCollection = new HashMap<>();
-        coffeeBeansCollection.put(1, new Blonde());
-        coffeeBeansCollection.put(2, new Espresso());
+        Map<Integer, Coffee> coffeeCollection = ProductCollection.getCoffeeCollection();
+        Map<Integer, CoffeeBean> coffeeBeanCollection = ProductCollection.getCoffeeBeanCollection();
 
         System.out.println("МЕНЮ -- Наименования кофе:");
         for (int i=1; i<=coffeeCollection.size(); i++) {
             System.out.println(coffeeCollection.get(i) + "\t Код: " + i);
         }
+
         System.out.println("     -- Наименования зерен:");
-        for (int i=1; i<=coffeeBeansCollection.size(); i++) {
-            System.out.println(coffeeBeansCollection.get(i) + "\t Код: " + i);
+        for (int i=1; i<=coffeeBeanCollection.size(); i++) {
+            System.out.println(coffeeBeanCollection.get(i) + "\t Код: " + i);
         }
 
         System.out.print("Введите код наименования кофе: ");
@@ -43,7 +37,7 @@ public class Order {
         }
 
         System.out.print("Введите код наименования зерен: ");
-        CoffeeBeans coffeeBeansOrdered = CoffeeBeansMenu.coffeeBeansMenu(coffeeBeansCollection);
+        CoffeeBean coffeeBeansOrdered = CoffeeBeanMenu.coffeeBeanMenu(coffeeBeanCollection);
 
         if (coffeeOrdered != null) {
             System.out.println("Вы выбрали зерна:  " + coffeeOrdered.getName());

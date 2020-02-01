@@ -1,8 +1,8 @@
-package com.epam.starbucks.process;
+package com.epam.starbucks.process.validator;
 
-public class IsNumber {
-    public static boolean isNumeric(String str)
-    {
+public class NumberValidator {
+    public static boolean isNumeric(String str) {
+
         try
         {
             double d = Double.parseDouble(str);
